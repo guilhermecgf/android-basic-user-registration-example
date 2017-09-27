@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.back4app.basicuserregistration.LoginActivity">
 
+    <!-- YOUR COMPONENTS GOES HERE -->
+
     <Button
         android:id="@+id/bt_login"
         android:layout_width="wrap_content"
@@ -55,7 +57,7 @@
     <TextView
         android:id="@+id/tv_username"
         android:layout_width="82dp"
-        android:layout_height="16dp"
+        android:layout_height="20dp"
         android:text="Username"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toTopOf="@+id/tv_password"
@@ -65,8 +67,8 @@
 
     <TextView
         android:id="@+id/tv_password"
-        android:layout_width="75dp"
-        android:layout_height="22dp"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
         android:text="Password"
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toTopOf="@+id/bt_login"

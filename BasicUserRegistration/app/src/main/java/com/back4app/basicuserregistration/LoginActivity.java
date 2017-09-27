@@ -12,15 +12,11 @@ import android.widget.EditText;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
-
 public class LoginActivity extends AppCompatActivity {
-
-    //TODO: first
 
     EditText et_username;
     EditText et_password;
@@ -38,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
                 .clientKey("7m0FBbyeIuwZFpIP7ZUVRHmC3PvZt3XKHhW0Ogqs") //PASTE YOUR CLIENT KEY
                 .server("https://parseapi.back4app.com/").build()
         );
-
-        //TODO: third
 
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
@@ -89,8 +83,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    //TODO: second
-
     void parseLogin() {
         ParseUser.logInInBackground(et_username.getText().toString(), et_password.getText().toString(), new LogInCallback() {
             @Override
@@ -132,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
         user.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                alertDisplayer("Register Successful", "Welcome " + et_username.getText().toString());
+                alertDisplayer("Register Successful", "User: " + et_username.getText().toString());
             }
         });
     }
@@ -152,3 +144,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
