@@ -35,11 +35,14 @@ public class LoginActivity extends AppCompatActivity {
                 .server("https://parseapi.back4app.com/").build()
         );
 
-        et_username = (EditText) findViewById(R.id.et_username);
-        et_password = (EditText) findViewById(R.id.et_password);
-        bt_login = (Button) findViewById(R.id.bt_login);
-        bt_register = (Button) findViewById(R.id.bt_register);
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
+
+        bt_register = findViewById(R.id.bt_register);
+        bt_login = findViewById(R.id.bt_login);
+
         progressDialog = new ProgressDialog(LoginActivity.this);
+
 
         bt_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,19 +86,19 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    void parseLogin() {
-        ParseUser.logInInBackground(et_username.getText().toString(), et_password.getText().toString(), new LogInCallback() {
-            @Override
-            public void done(ParseUser parseUser, ParseException e) {
-                if (parseUser != null) {
-                    progressDialog.dismiss();
-                    alertDisplayer("Login Successful","Welcome "+parseUser.getUsername());
-                } else {
-                    progressDialog.dismiss();
-                    alertDisplayer("Login Failed", e.getMessage()+" Please Try Again");
-                }
-            }
-        });
+    void alertDisplayer(String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        et_password.setText("");
+                    }
+                });
+        AlertDialog ok = builder.create();
+        ok.show();
     }
 
     void parseRegister(){
@@ -112,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                     saveNewUser();
                 } else {
                     progressDialog.dismiss();
-                    alertDisplayer("Register Fail", e.getMessage());
+                    alertDisplayer("Register Fail", e.getMessage()+" Please Try Again");
                 }
             }
         });
@@ -129,19 +132,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    void alertDisplayer(String title,String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog ok = builder.create();
-        ok.show();
+    void parseLogin() {
+        ParseUser.logInInBackground(et_username.getText().toString(), et_password.getText().toString(), new LogInCallback() {
+            @Override
+            public void done(ParseUser parseUser, ParseException e) {
+                if (parseUser != null) {
+                    progressDialog.dismiss();
+                    alertDisplayer("Login Successful","Welcome "+parseUser.getUsername());
+                } else {
+                    progressDialog.dismiss();
+                    alertDisplayer("Login Failed", e.getMessage()+" Please Try Again");
+                }
+            }
+        });
     }
+
 
 }
 
