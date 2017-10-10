@@ -16,7 +16,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
-public class LoginActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     EditText et_username;
     EditText et_password;
@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("znPJtKs3ulIypFkuVP9nVxUpaC47qijSyqe6BQ6C") //PASTE YOUR Back4App APPLICATION ID
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         bt_register = findViewById(R.id.bt_register);
         bt_login = findViewById(R.id.bt_login);
 
-        progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog = new ProgressDialog(MainActivity.this);
 
 
         bt_register.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     void alertDisplayer(String title,String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
