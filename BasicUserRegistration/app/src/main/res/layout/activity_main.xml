@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.back4app.basicuserregistration.LoginActivity">
+    tools:context="com.back4app.basicuserregistration.MainActivity">
 
     <!-- YOUR COMPONENTS GOES HERE -->
 
