@@ -1,8 +1,8 @@
 *.iml
-/BasicUserRegistration/.gradle
-/BasicUserRegistration/local.properties
-/BasicUserRegistration/.idea
-/BasicUserRegistration/.DS_Store
-/BasicUserRegistration/build
-/BasicUserRegistration/captures
+/.gradle
+/local.properties
+/.idea
+/.DS_Store
+/build
+/captures
 /BasicUserRegistration.externalNativeBuild
