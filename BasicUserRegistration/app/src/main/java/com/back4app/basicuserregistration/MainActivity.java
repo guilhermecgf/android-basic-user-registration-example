@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.view.View;
-//import android.widget.ProgressBar;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -24,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
     Button bt_login;
     Button bt_register;
     ProgressDialog progressDialog;
-//    ProgressBar progressBar;
-//    create an alert dialog to show the progressbar
 
     String user;
     String pwd;
@@ -68,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }).start();
-
             }
         });
 
@@ -93,10 +89,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
-    void alertDisplayer(final String title, final String message){
+    void alertDisplayer(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(title)
                 .setMessage(message)
@@ -104,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-//                        et_password.setText(""); TODO:encontrar outra solução p/ isso
                     }
                 });
         AlertDialog ok = builder.create();
@@ -120,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     progressDialog.dismiss();
-//                    et_username.setText(ParseUser.getCurrentUser().getUsername()); TODO:encontrar outra solução p/ isso
-
                     saveNewUser(username);
                 } else {
                     progressDialog.dismiss();
@@ -142,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void userLogin(final String username, final String password) {
+    void userLogin(String username, String password) {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser parseUser, ParseException e) {
@@ -159,21 +151,3 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
