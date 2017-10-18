@@ -114,22 +114,11 @@ public class MainActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     progressDialog.dismiss();
-                    saveNewUser(username);
+                    alertDisplayer("Register Successful", "User: " + username);
                 } else {
                     progressDialog.dismiss();
                     alertDisplayer("Register Fail", e.getMessage()+" Please Try Again");
                 }
-            }
-        });
-    }
-
-    void saveNewUser(final String username){
-        ParseUser user = ParseUser.getCurrentUser();
-        user.setUsername(username);
-        user.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                alertDisplayer("Register Successful", "User: " + username);
             }
         });
     }
