@@ -13,7 +13,6 @@ import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     Button bt_login;
     Button bt_register;
     ProgressDialog progressDialog;
+
+    String user;
+    String pwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +56,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            parseRegister();
+                            user = (et_username.getText().toString());
+                            pwd = (et_password.getText().toString());
+                            userRegister(user, pwd);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 }).start();
-
             }
         });
 
@@ -74,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            parseLogin();
+                            user = (et_username.getText().toString());
+                            pwd = (et_password.getText().toString());
+                            userLogin(user, pwd);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -83,10 +88,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
-    void alertDisplayer(String title,String message){
+    void alertDisplayer(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(title)
                 .setMessage(message)
@@ -94,25 +98,22 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        et_password.setText("");
                     }
                 });
         AlertDialog ok = builder.create();
         ok.show();
     }
 
-    void parseRegister(){
+    void userRegister(final String username, final String password){
         ParseUser user = new ParseUser();
-        user.setUsername(et_username.getText().toString());
-        user.setPassword(et_password.getText().toString());
+        user.setUsername(username);
+        user.setPassword(password);
         user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
-
                     progressDialog.dismiss();
-                    et_username.setText(ParseUser.getCurrentUser().getUsername());
-                    saveNewUser();
+                    alertDisplayer("Register Successful", "User: " + username);
                 } else {
                     progressDialog.dismiss();
                     alertDisplayer("Register Fail", e.getMessage()+" Please Try Again");
@@ -121,27 +122,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void saveNewUser(){
-        ParseUser user = ParseUser.getCurrentUser();
-        user.setUsername(et_username.getText().toString());
-        user.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                alertDisplayer("Register Successful", "User: " + et_username.getText().toString());
-            }
-        });
-    }
-
-    void parseLogin() {
-        ParseUser.logInInBackground(et_username.getText().toString(), et_password.getText().toString(), new LogInCallback() {
+    void userLogin(String username, String password) {
+        ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser parseUser, ParseException e) {
                 if (parseUser != null) {
                     progressDialog.dismiss();
-                    alertDisplayer("Login Successful","Welcome "+parseUser.getUsername());
+                    alertDisplayer("Login Successful", "Welcome " + parseUser.getUsername());
                 } else {
                     progressDialog.dismiss();
-                    alertDisplayer("Login Failed", e.getMessage()+" Please Try Again");
+                    alertDisplayer("Login Failed", e.getMessage() + " Please Try Again");
                 }
             }
         });
@@ -149,21 +139,3 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
