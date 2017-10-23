@@ -12,7 +12,6 @@ import android.widget.EditText;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseObject;
-import com.parse.ParseInstallation;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
