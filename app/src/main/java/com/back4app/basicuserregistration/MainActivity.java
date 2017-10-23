@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseInstallation;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -30,12 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("znPJtKs3ulIypFkuVP9nVxUpaC47qijSyqe6BQ6C") //PASTE YOUR Back4App APPLICATION ID
-                .clientKey("7m0FBbyeIuwZFpIP7ZUVRHmC3PvZt3XKHhW0Ogqs") //PASTE YOUR CLIENT KEY
-                .server("https://parseapi.back4app.com/").build()
-        );
 
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
