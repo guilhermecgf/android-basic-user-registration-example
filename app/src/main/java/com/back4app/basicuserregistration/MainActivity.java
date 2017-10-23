@@ -101,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void userRegister(final String username, final String password){
+        if (ParseUser.getCurrentUser() != null) {
+            ParseUser.getCurrentUser().logOut();
+        }
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.setPassword(password);
