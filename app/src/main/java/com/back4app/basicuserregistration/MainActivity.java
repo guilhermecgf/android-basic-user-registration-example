@@ -33,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ParseInstallation.getCurrentInstallation().saveInBackground();
-
-
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
 
