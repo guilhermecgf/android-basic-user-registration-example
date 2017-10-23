@@ -2,10 +2,7 @@ package com.back4app.basicuserregistration;
 
 import com.parse.Parse;
 import android.app.Application;
-
-/**
- * Created by ingrid on 20/10/17.
- */
+s
 
 public class App extends Application {
     @Override
