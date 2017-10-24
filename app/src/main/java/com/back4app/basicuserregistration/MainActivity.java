@@ -12,7 +12,6 @@ import android.widget.EditText;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseObject;
-import com.parse.ParseInstallation;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -101,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void userRegister(final String username, final String password){
+        if (ParseUser.getCurrentUser() != null) {
+            ParseUser.getCurrentUser().logOut();
+        }
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.setPassword(password);
