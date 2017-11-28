@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        et_username = findViewById(R.id.et_username);
-        et_password = findViewById(R.id.et_password);
+        et_username = (EditText) findViewById(R.id.et_username);
+        et_password = (EditText) findViewById(R.id.et_password);
 
-        bt_register = findViewById(R.id.bt_register);
-        bt_login = findViewById(R.id.bt_login);
+        bt_register = (Button) findViewById(R.id.bt_register);
+        bt_login = (Button) findViewById(R.id.bt_login);
 
         progressDialog = new ProgressDialog(MainActivity.this);
 
